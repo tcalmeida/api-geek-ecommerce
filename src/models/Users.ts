@@ -1,27 +1,48 @@
-import {Sequelize, Model, DataTypes} from "sequelize"
-import { mySqlConection } from "../database"
+import {DataTypes, CreationOptional, InferAttributes, InferCreationAttributes, Model} from "sequelize";
+import { mySqlConection } from "../database";
 
-const connection = mySqlConection.getInstance()
+const dbConnection = mySqlConection.getInstance();
 
-export const User = connection.define("User",{
-    UserID: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-      },
-      Name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      Email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      Password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }, 
-} )
+interface User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+  id_user: CreationOptional<number>;
+  name: string;
+  email: string;
+  password: string;
+  isAdm: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const User = dbConnection.define<User>(
+  "User",
+  {
+    id_user: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+    isAdm: {
+      type: DataTypes.TINYINT,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+    },
+  },
+  {
+    tableName: "user",
+  }
+);
 
 export default User;
