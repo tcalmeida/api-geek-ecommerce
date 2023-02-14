@@ -9,8 +9,8 @@ interface User extends Model<InferAttributes<User>, InferCreationAttributes<User
   email: string;
   password: string;
   isAdm: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: CreationOptional<Date>;
+  updatedAt: CreationOptional<Date>;
 }
 
 const User = dbConnection.define<User>(
