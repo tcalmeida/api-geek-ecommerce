@@ -39,6 +39,9 @@ const OrderDetail = dbConnection.define<OrderDetail>(
     },
   },
   {
-    tableName: "order_detail",CreationOptional<Date>;);
+    tableName: "order_detail",
+  }
+);
+
 
 export default OrderDetail;
