@@ -5,6 +5,12 @@ const controller = {
   async create(req: Request, res: Response) {
     try {
       const { name } = req.body;
+
+      const checkCategory = await Category.count({ where: { name } });
+      if (checkCategory) {
+        return res.status(400).json("categoria já existente");
+      }
+
       const newCategory = await Category.create({
         name,
       });
@@ -16,9 +22,9 @@ const controller = {
 
   async findAll(req: Request, res: Response) {
     try {
-      const findCategories = await Category.findAll( {
-        include: Product
-      } );
+      const findCategories = await Category.findAll({
+        include: Product,
+      });
       return res.status(200).json(findCategories);
     } catch (error) {
       return res.status(500).json("Não foi possível realizar a ação");
@@ -92,7 +98,6 @@ const controller = {
       return res.status(500).json("Não foi possível realizar a ação");
     }
   },
-
 };
 
 export default controller;
