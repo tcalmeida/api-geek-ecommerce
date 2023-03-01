@@ -32,6 +32,7 @@ const User = dbConnection.define<User>(
     },
     isAdm: {
       type: DataTypes.TINYINT,
+      defaultValue: 1
     },
     createdAt: {
       type: DataTypes.DATE,
