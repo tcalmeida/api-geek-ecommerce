@@ -29,18 +29,18 @@ const Product = dbConnection.define<Product>(
     photo: {
       type: DataTypes.STRING,
     },
+    price: {
+      type: DataTypes.DECIMAL,
+    },
+    description: {
+      type: DataTypes.TEXT,
+    },
     category_id: {
       type: DataTypes.INTEGER,
       references: {
         model: Category,
         key: "id",
       },
-    },
-    price: {
-      type: DataTypes.DECIMAL,
-    },
-    description: {
-      type: DataTypes.TEXT,
     },
     createdAt: {
       type: DataTypes.DATE,
