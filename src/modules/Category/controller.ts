@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Category, Product } from "../../models/";
+import { Category } from "../../models/";
 
 const controller = {
   async create(req: Request, res: Response) {
@@ -8,7 +8,7 @@ const controller = {
 
       const checkCategory = await Category.count({ where: { name } });
       if (checkCategory) {
-        return res.status(400).json("categoria já existente");
+        return res.status(409).json("categoria já existente");
       }
 
       const newCategory = await Category.create({
@@ -22,9 +22,7 @@ const controller = {
 
   async findAll(req: Request, res: Response) {
     try {
-      const findCategories = await Category.findAll({
-        include: Product,
-      });
+      const findCategories = await Category.findAll();
       return res.status(200).json(findCategories);
     } catch (error) {
       return res.status(500).json("Não foi possível realizar a ação");
@@ -53,7 +51,7 @@ const controller = {
 
   async update(req: Request, res: Response) {
     try {
-      const id = req.params.id;
+      const { id } = req.params;
 
       const { name } = req.body;
 
