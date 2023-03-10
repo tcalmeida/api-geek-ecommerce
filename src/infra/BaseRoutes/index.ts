@@ -2,7 +2,7 @@ import { Router } from "express";
 import userRoutes from "../../modules/User/routes";
 import productRoutes from "../../modules/Product/routes";
 import categoryRoutes from "../../modules/Category/routes";
-import orderRoutes from "../../modules/OrderDetails/routes";
+import orderRoutes from "../../modules/Purchase/routes";
 
 const routes = Router();
 
