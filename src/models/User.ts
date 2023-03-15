@@ -8,9 +8,10 @@ interface User extends Model<InferAttributes<User>, InferCreationAttributes<User
   name: string;
   email: string;
   password: string;
-  isAdm: number;
+  scope?: string;
   createdAt: CreationOptional<Date>;
   updatedAt: CreationOptional<Date>;
+  deletedAt: CreationOptional<Date>;
 }
 
 const User = dbConnection.define<User>(
@@ -30,19 +31,23 @@ const User = dbConnection.define<User>(
     password: {
       type: DataTypes.STRING,
     },
-    isAdm: {
-      type: DataTypes.TINYINT,
-      defaultValue: 1
-    },
+    scope: {
+      type: DataTypes.STRING,
+      defaultValue: 'client'
+    } ,
     createdAt: {
       type: DataTypes.DATE,
     },
     updatedAt: {
       type: DataTypes.DATE,
-    },
+    }, 
+    deletedAt: {
+      type: DataTypes.DATE,
+    }
   },
   {
     tableName: "user",
+    paranoid: true
   }
 );
 
