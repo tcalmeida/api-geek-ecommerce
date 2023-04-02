@@ -5,4 +5,3 @@ export default validate({
     id: Joi.number().required(),
   }),
 });
-
