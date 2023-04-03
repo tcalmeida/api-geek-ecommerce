@@ -12,7 +12,7 @@ export default class DiscountController {
       });
       return res.status(201).json(newDiscount);
     } catch {
-      return res.status(400).json({ "message": MESSAGE.ERROR.REGISTER.DISCOUNT });
+      return res.status(400).json({ message: MESSAGE.ERROR.REGISTER.DISCOUNT });
     }
   };
 
@@ -21,7 +21,7 @@ export default class DiscountController {
       const findDiscounts = await Discount.findAll();
       return res.status(200).json(findDiscounts);
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.SEARCH_DB });
+      return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
   };
 
@@ -31,13 +31,13 @@ export default class DiscountController {
       let findDiscount = await Discount.findByPk(id);
 
       if (!findDiscount) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
 
       findDiscount = await Discount.findByPk(id);
       return res.status(200).json(findDiscount);
     } catch {
-      return res.status(500).json({ "message": MESSAGE.ERROR.SEARCH_DB });
+      return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
   };
 
@@ -49,7 +49,7 @@ export default class DiscountController {
 
       const checkDiscount = await Discount.findByPk(id);
       if (!checkDiscount) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
 
       await Discount.update(
@@ -67,7 +67,7 @@ export default class DiscountController {
       const showDiscount = await Discount.findByPk(id);
       return res.status(200).json(showDiscount);
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.UPDATE_REGISTER });
+      return res.status(500).json({ message: MESSAGE.ERROR.UPDATE_REGISTER });
     }
   };
 
@@ -77,7 +77,7 @@ export default class DiscountController {
 
       let deleteDiscount = await Discount.findByPk(id);
       if (!deleteDiscount) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
       await Discount.destroy({
         where: {
@@ -86,7 +86,7 @@ export default class DiscountController {
       });
       return res.status(204).json();
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.DELETE });
+      return res.status(500).json({ message: MESSAGE.ERROR.DELETE });
     }
   };
 }
