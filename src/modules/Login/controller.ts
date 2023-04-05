@@ -10,24 +10,29 @@ interface LoginRequestBody {
   password: string;
 }
 export default class LoginController {
-  static login = async (req: Request, res: Response, next: NextFunction): Promise<Response> => {
+  static login = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response> => {
     try {
       const { email, password } = req.body as LoginRequestBody;
 
       const user = await User.findOne({ where: { email } });
 
       if (!user) {
-        return res
-          .status(401)
-          .json({ "message": MESSAGE.ERROR.INVALID_DATA });
-      };
+        return res.status(401).json({ message: MESSAGE.ERROR.INVALID_DATA });
+      }
 
-      const isPasswordValid: boolean = await bcrypt.compare(password, user.password);
+      const isPasswordValid: boolean = await bcrypt.compare(
+        password,
+        user.password
+      );
 
       if (!isPasswordValid) {
         return res.status(401).json({ message: MESSAGE.ERROR.INVALID_DATA });
-      };
-    
+      }
+
       const token: string = jwt.sign(
         {
           id_user: user.id_user,
@@ -42,7 +47,7 @@ export default class LoginController {
       return res.status(200).json({ id: user.id_user, token: token });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ "message": MESSAGE.ERROR.TOKEN });
+      return res.status(500).json({ message: MESSAGE.ERROR.TOKEN });
     }
   };
 }
