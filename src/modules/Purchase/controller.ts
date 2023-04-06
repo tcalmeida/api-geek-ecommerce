@@ -13,7 +13,7 @@ export default class PurchaseController {
       });
       return res.status(201).json(newOrder);
     } catch {
-      return res.status(400).json({ "message": MESSAGE.ERROR.REGISTER.PURCHASE });
+      return res.status(400).json({ message: MESSAGE.ERROR.REGISTER.PURCHASE });
     }
   };
 
@@ -21,15 +21,16 @@ export default class PurchaseController {
     try {
       const findPurchase = await Purchase.findAll({
         include: {
-          model: User, 
-          attributes: { 
-            exclude: ['password','email', 'scope','updatedAt','deletedAt']
-          }},
+          model: User,
+          attributes: {
+            exclude: ['password', 'email', 'scope', 'updatedAt', 'deletedAt'],
+          },
+        },
       });
 
       return res.status(200).json(findPurchase);
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.SEARCH_DB });
+      return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
   };
 
@@ -39,34 +40,37 @@ export default class PurchaseController {
       let findPurchase = await Purchase.findByPk(id);
 
       if (!findPurchase) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
       findPurchase = await Purchase.findByPk(id, {
         include: User,
         attributes: {
-          exclude: ['password','email', 'scope', 'createdAt', 'updatedAt']
-        }
+          exclude: ['password', 'email', 'scope', 'createdAt', 'updatedAt'],
+        },
       });
       return res.status(200).json(findPurchase);
     } catch {
-      return res.status(500).json({ "message": MESSAGE.ERROR.SEARCH_DB });
+      return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
   };
 
-  static findAllUserPurchase = async (req: Request, res: Response): Promise<Response> => {
+  static findAllUserPurchase = async (
+    req: Request,
+    res: Response
+  ): Promise<Response> => {
     const id_user = getUserIdFromToken(req) as number;
     try {
       const findUserPurchases = await Purchase.findAll({
         where: { user_id: id_user },
         attributes: ['id_purchase', 'total', 'createdAt', 'discount_id'],
         include: {
-          model: User, 
+          model: User,
           attributes: ['id_user', 'name'],
         },
       });
       return res.status(200).json(findUserPurchases);
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.SEARCH_DB });
+      return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
   };
 
@@ -78,7 +82,7 @@ export default class PurchaseController {
 
       const checkPurchase = await Purchase.findByPk(id);
       if (!checkPurchase) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
 
       await Purchase.update(
@@ -96,7 +100,7 @@ export default class PurchaseController {
       const showPurchase = await Purchase.findByPk(id);
       return res.status(200).json(showPurchase);
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.UPDATE_REGISTER });
+      return res.status(500).json({ message: MESSAGE.ERROR.UPDATE_REGISTER });
     }
   };
 
@@ -106,7 +110,7 @@ export default class PurchaseController {
 
       let deletePurchase = await Purchase.findByPk(id);
       if (!deletePurchase) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
       await Purchase.destroy({
         where: {
@@ -115,7 +119,7 @@ export default class PurchaseController {
       });
       return res.status(204).json();
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.DELETE });
+      return res.status(500).json({ message: MESSAGE.ERROR.DELETE });
     }
   };
 }
