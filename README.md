@@ -1,4 +1,4 @@
-# geekstore-backend
+# geekstore-ecommerce
 
 Final project of [Gama Academy](https://www.gama.academy/) Webdevelopment course. It's a MVP of a backend server that manages a REST API for an ecommerce. The second half of the project is: **todo**
 
