@@ -10,7 +10,7 @@ Final project of [Gama Academy](https://www.gama.academy/) Webdevelopment course
 
 ## Stacks
 
-- **Node.js**
+- **Node.js
 - **Express**
 - Database yet to Design
 - **Typescript**
@@ -22,26 +22,3 @@ todo
 ## Installation
 
 todo
-
-## Project Team
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/tiagospeckart">
-        <img src="https://avatars.githubusercontent.com/u/75458110?v=4" width="100px;" alt="Foto de Tiago Martins no GitHub"/><br>
-        <sub>
-          <b>Tiago M. Speckart</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/tcalmeida">
-        <img src="https://avatars.githubusercontent.com/u/113650703?v=4" width="100px;" alt="Foto de Thiago Almeida"/><br>
-        <sub>
-          <b>Thiago Almeida</b>
-        </sub>
-      </a>
-    </td>
-  </tr>
-</table>
