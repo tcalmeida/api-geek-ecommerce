@@ -10,10 +10,9 @@ Final project of [Gama Academy](https://www.gama.academy/) Webdevelopment course
 
 ## Stacks
 
-- **Node.js
-- **Express**
-- Database yet to Design
-- **Typescript**
+- Node.js
+- Express
+- Typescript
 
 ## API Documentation
 
