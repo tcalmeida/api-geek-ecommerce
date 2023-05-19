@@ -1,7 +1,7 @@
+
 # api-geek-ecommerce
 
 This repository is the final project for the Gama Academy Web Development course of a backend server that manages a REST API for an e-commerce platform.
-
 
 ## Current goals
 
@@ -73,4 +73,3 @@ For ease of use, we recommend the [Swagger Viewer VS Code Extension](https://mar
 - Press `F1` -> Run Preview Swagger
 - Press `Shift + Alt + P`
 - Right click file in explorer panel and click "Preview Swagger"
-
