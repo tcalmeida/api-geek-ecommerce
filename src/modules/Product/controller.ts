@@ -15,13 +15,12 @@ export default class ProductController {
       });
       return res.status(201).json(newProduct);
     } catch {
-      return res.status(400).json({ "message": MESSAGE.ERROR.REGISTER.PRODUCT });
+      return res.status(400).json({ message: MESSAGE.ERROR.REGISTER.PRODUCT });
     }
   };
 
   static findAll = async (req: Request, res: Response): Promise<Response> => {
     try {
-
       //filter by category (optional)
       const categoryUrl = req.query.category;
 
@@ -48,7 +47,7 @@ export default class ProductController {
       });
       return res.status(200).json(findProducts);
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.SEARCH_DB });
+      return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
   };
 
@@ -58,7 +57,7 @@ export default class ProductController {
       let findProduct = await Product.findByPk(id);
 
       if (!findProduct) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
 
       findProduct = await Product.findByPk(id, {
@@ -66,7 +65,7 @@ export default class ProductController {
       });
       return res.status(200).json(findProduct);
     } catch {
-      return res.status(500).json({ "message": MESSAGE.ERROR.SEARCH_DB });
+      return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
   };
 
@@ -78,7 +77,7 @@ export default class ProductController {
 
       const checkProduct = await Product.findByPk(id);
       if (!checkProduct) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
 
       await Product.update(
@@ -99,7 +98,7 @@ export default class ProductController {
       const showProduct = await Product.findByPk(id);
       return res.status(200).json(showProduct);
     } catch (error) {
-      return res.status(500).json({ "message": MESSAGE.ERROR.UPDATE_REGISTER });
+      return res.status(500).json({ message: MESSAGE.ERROR.UPDATE_REGISTER });
     }
   };
 
@@ -109,7 +108,7 @@ export default class ProductController {
 
       let deleteProduct = await Product.findByPk(id);
       if (!deleteProduct) {
-        return res.status(404).json({ "message": MESSAGE.ERROR.ID_NOT_FOUND });
+        return res.status(404).json({ message: MESSAGE.ERROR.ID_NOT_FOUND });
       }
       await Product.destroy({
         where: {
@@ -118,7 +117,7 @@ export default class ProductController {
       });
       return res.status(204).json();
     } catch (error) {
-      return res.status(401).json({ "message": MESSAGE.ERROR.DELETE });
+      return res.status(401).json({ message: MESSAGE.ERROR.DELETE });
     }
   };
 }
